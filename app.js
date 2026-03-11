@@ -17,7 +17,7 @@ app.get("/health", (req, res) => {
 });
 
 /* AI Market Summary Endpoint */
-app.post("/api/ai/market-summary", async (req, res) => {
+app.post("/ai/market-summary", async (req, res) => {
   try {
     const market = req.body;
 
@@ -55,7 +55,7 @@ Return:
           Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
 
     const aiText = response.data.choices[0].message.content;
