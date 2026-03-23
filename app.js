@@ -48,6 +48,7 @@ Return:
             content: prompt,
           },
         ],
+        //creativity level
         temperature: 0.7,
       },
       {
@@ -69,6 +70,52 @@ Return:
 
     res.status(500).json({
       error: "AI request failed",
+    });
+  }
+});
+
+//api endpoint that asks ai model to analyse competitors in the market
+app.post("/api/ai/competitor-analysis", async (req, res) => {
+  try {
+    const { market } = req.body;
+    const prompt = `
+    Act as a business analyst.
+    Analyse the competitive landscape of ${market} market.
+    Provide : 
+    1. Major companies
+    2. Competitive advantages
+    3. Market positioning
+    4. Emerging Competitors
+    `;
+    const response = await axios.post(
+      //use grok api
+      //allows you to use open source ai models
+      "https://api.groq.com/openai/v1/chat/completions",
+      {
+        //which ai brain to use
+        model: "llama-3.1-8b-instant",
+        messages: [
+          {
+            //get message from user
+            role: "user",
+            content: prompt,
+          },
+        ],
+        //for security
+        headers: {
+          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    const aiText = response.data.choices[0].message.content;
+    res.json({
+      analysis: aiText,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "AI Competitor Analysis Failed",
     });
   }
 });
