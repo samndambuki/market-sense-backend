@@ -75,7 +75,7 @@ Return:
 });
 
 //api endpoint that asks ai model to analyse competitors in the market
-app.post("/api/ai/competitor-analysis", async (req, res) => {
+app.post("/ai/competitor-analysis", async (req, res) => {
   try {
     const { market } = req.body;
     const prompt = `
@@ -101,6 +101,8 @@ app.post("/api/ai/competitor-analysis", async (req, res) => {
             content: prompt,
           },
         ],
+      },
+      {
         //for security
         headers: {
           Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
