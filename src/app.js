@@ -41,7 +41,7 @@ Return:
     const response = await axios.post(
       "https://api.groq.com/openai/v1/chat/completions",
       {
-        model: "llama-3.1-8b-instant",
+        model: "openai/gpt-oss-20b",
         messages: [
           {
             role: "user",
@@ -93,7 +93,7 @@ app.post("/ai/competitor-analysis", async (req, res) => {
       "https://api.groq.com/openai/v1/chat/completions",
       {
         //which ai brain to use
-        model: "llama-3.1-8b-instant",
+        model: "openai/gpt-oss-20b",
         messages: [
           {
             //get message from user
