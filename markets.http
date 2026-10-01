@@ -1,0 +1,21 @@
+### Get all markets
+GET http://LOCALHOST:4000/api/markets
+
+
+### Get market by id
+GET http://localhost:4000/api/markets/1 
+
+
+### Create a market
+POST http://localhost:4000/api/markets
+Content-Type: application/json
+
+{
+    "name": "Health Insurance",
+    "category": "Heathcare",
+    "region": "East Africa",
+    "growthRate": 8.5,
+    "description": "A growing healthcare insurance market",
+    "marketSize": "KSH 10 billion",
+    "riskLevel": "MEDIUM"
+}
