@@ -1,12 +1,14 @@
 ### Get all markets
 GET http://LOCALHOST:4000/api/markets
 
-
 ### Get market by id
 GET http://localhost:4000/api/markets/1 
 
 
-### Create a market
+
+### CREATE ENDPOINTS
+
+### Create market 1 
 POST http://localhost:4000/api/markets
 Content-Type: application/json
 
@@ -21,7 +23,7 @@ Content-Type: application/json
 }
 
 
-###
+### Create Market 2
 POST http://localhost:4000/api/markets
 Content-Type: application/json
 
@@ -35,8 +37,81 @@ Content-Type: application/json
   "riskLevel": "LOW"
 }
 
+### Create market 3 - Fintech
+POST http://localhost:4000/api/markets
+Content-Type: application/json
 
-### Update Market
+{
+  "name": "Digital Payments",
+  "category": "Fintech",
+  "region": "East Africa",
+  "growthRate": 14.7,
+  "description": "Digital payment services including mobile money and online transactions.",
+  "marketSize": "KSh 120 billion",
+  "riskLevel": "LOW"
+}
+
+### Create market 4 - E-commerce
+POST http://localhost:4000/api/markets
+Content-Type: application/json
+
+{
+  "name": "E-commerce",
+  "category": "Retail",
+  "region": "East Africa",
+  "growthRate": 12.3,
+  "description": "Online retail platforms connecting consumers with merchants.",
+  "marketSize": "KSh 85 billion",
+  "riskLevel": "MEDIUM"
+}
+
+### Create market 5 - Renewable Energy
+POST http://localhost:4000/api/markets
+Content-Type: application/json
+
+{
+  "name": "Renewable Energy",
+  "category": "Energy",
+  "region": "East Africa",
+  "growthRate": 10.2,
+  "description": "Solar, wind and other renewable energy solutions for homes and businesses.",
+  "marketSize": "KSh 70 billion",
+  "riskLevel": "LOW"
+}
+
+### Create market 6 - Real Estate
+POST http://localhost:4000/api/markets
+Content-Type: application/json
+
+{
+  "name": "Commercial Real Estate",
+  "category": "Real Estate",
+  "region": "Nairobi, Kenya",
+  "growthRate": 4.8,
+  "description": "Commercial properties including offices, retail spaces and business parks.",
+  "marketSize": "KSh 200 billion",
+  "riskLevel": "HIGH"
+}
+
+### Test invalid market data
+POST http://localhost:4000/api/markets
+Content-Type: application/json
+
+{
+  "name": "",
+  "category": "Fintech",
+  "region": "East Africa",
+  "growthRate": "invalid",
+  "description": "Test market",
+  "marketSize": "KSh 10 billion",
+  "riskLevel": "EXTREME"
+}
+
+
+### UPDATE ENDPOINTS
+
+
+### Update existing market
 PUT http://localhost:4000/api/markets/1
 Content-Type: application/json
 
@@ -50,7 +125,32 @@ Content-Type: application/json
     "riskLevel":"MEDIUM"
 }
 
+### Test update validation - invalid data
+PUT http://localhost:4000/api/markets/1
+Content-Type: application/json
 
-### DELETE Market
+{
+  "name": "",
+  "category": "Fintech",
+  "region": "East Africa",
+  "growthRate": "invalid",
+  "description": "Updated test market",
+  "marketSize": "KSh 10 billion",
+  "riskLevel": "EXTREME"
+}
+
+
+
+### DELETE ENDPOINTS
+
+
+### DELETE existing market
 DELETE http://localhost:4000/api/markets/2
 Content-Type: application/json
+
+### Test invalid ID
+DELETE http://localhost:4000/api/markets/abc
+
+### Test non-existent market
+DELETE http://localhost:4000/api/markets/999999
+

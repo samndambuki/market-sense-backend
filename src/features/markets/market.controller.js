@@ -47,30 +47,6 @@ export const getMarketById = async (req, res) => {
 
 export const createMarket = async (req, res) => {
   try {
-    // const {
-    //   name,
-    //   category,
-    //   region,
-    //   growthRate,
-    //   description,
-    //   marketSize,
-    //   riskLevel,
-    // } = req.body;
-
-    // const market = await prisma.market.create({
-    //   data: {
-    //     name,
-    //     category,
-    //     region,
-    //     growthRate: Number(growthRate),
-    //     description,
-    //     marketSize,
-    //     riskLevel,
-    //   },
-    // });
-
-    // res.status(201).json(market);
-
     const result = marketSchema.safeParse(req.body);
 
     if (!result.success) {
@@ -107,27 +83,21 @@ export const updateMarket = async (req, res) => {
       });
     }
 
-    const {
-      name,
-      category,
-      region,
-      growthRate,
-      description,
-      marketSize,
-      riskLevel,
-    } = req.body;
+    const result = marketSchema.safeParse(req.body);
+
+    if (!result.success) {
+      return res.status(400).json({
+        message: "Validation failed",
+        errors: result.error.issues.map((issue) => ({
+          field: issue.path.join("."),
+          message: issue.message,
+        })),
+      });
+    }
 
     const market = await prisma.market.update({
       where: { id },
-      data: {
-        name,
-        category,
-        region,
-        growthRate: Number(growthRate),
-        description,
-        marketSize,
-        riskLevel,
-      },
+      data: result.data,
     });
 
     res.status(200).json({
@@ -173,7 +143,7 @@ export const deleteMarket = async (req, res) => {
       });
     }
     res.status(500).json({
-      message: "Error deleting market",
+      message: "Failed to delete market",
     });
   }
 };
