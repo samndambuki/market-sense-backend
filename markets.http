@@ -19,3 +19,38 @@ Content-Type: application/json
     "marketSize": "KSH 10 billion",
     "riskLevel": "MEDIUM"
 }
+
+
+###
+POST http://localhost:4000/api/markets
+Content-Type: application/json
+
+{
+  "name": "Agricultural Technology",
+  "category": "Agritech",
+  "region": "East Africa",
+  "growthRate": 10.8,
+  "description": "Technology solutions for farmers, including precision agriculture, digital marketplaces, and smart irrigation.",
+  "marketSize": "KSh 35 billion",
+  "riskLevel": "LOW"
+}
+
+
+### Update Market
+PUT http://localhost:4000/api/markets/1
+Content-Type: application/json
+
+{
+    "name":"Health Insurance",
+    "category":"Healtchcare",
+    "region":"East Africa",
+    "growthRate":9.1,
+    "description":"A growing healthcare insurance market with increasing demand for private medical cover.",
+    "marketSize":"Ksh 12 billion",
+    "riskLevel":"MEDIUM"
+}
+
+
+### DELETE Market
+DELETE http://localhost:4000/api/markets/2
+Content-Type: application/json
