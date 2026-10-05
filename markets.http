@@ -1,3 +1,5 @@
+### MARKET ENDPOINTS
+
 ### Get all markets
 GET http://LOCALHOST:4000/api/markets
 
@@ -154,3 +156,48 @@ DELETE http://localhost:4000/api/markets/abc
 ### Test non-existent market
 DELETE http://localhost:4000/api/markets/999999
 
+
+
+### MARKET PLAYER ENDPOINTS
+
+###Get all market players
+GET http://localhost:4000/api/marketPlayers
+
+
+### Get company
+GET http://localhost:4000/api/marketPlayers/0
+
+
+### Create Market Name
+POST http://localhost:4000/api/marketPlayers
+Content-Type: application/json
+
+{
+  "companyName":"Jubilee Insurance",
+  "marketId":1
+}
+
+
+
+### Create Market Name
+POST http://localhost:4000/api/marketPlayers
+Content-Type: application/json
+
+{
+  "companyName":"Old Mutual",
+  "marketId":1
+}
+
+
+### Update Market Player
+PUT http://localhost:4000/api/marketPlayers/1
+Content-Type: application/json
+
+{
+  "companyName":"Jubilee Health Insurance",
+  "marketId":1
+}
+
+
+### DELETE marketPlayer
+DELETE http://localhost:4000/api/marketPlayers/4
