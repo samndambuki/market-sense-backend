@@ -4,6 +4,7 @@ import cors from "cors";
 import prisma from "./src/config/prisma";
 import marketRoutes from "./src/features/markets/market.routes.js";
 import marketPlayerRoutes from "./src/features/marketPlayers/marketPlayer.routes.js";
+import aiRoutes from "./src/ai/ai.routes.js";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/markets", marketRoutes);
 app.use("/api/marketPlayers", marketPlayerRoutes);
+app.use("/api/ai", aiRoutes);
 
 app.get("/", (req, res) => {
   res.json({

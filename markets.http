@@ -1,4 +1,8 @@
+// ------------------------------------------------------------
+
 ### MARKET ENDPOINTS
+
+// -------------------------------------------------------------
 
 ### Get all markets
 GET http://LOCALHOST:4000/api/markets
@@ -157,8 +161,12 @@ DELETE http://localhost:4000/api/markets/abc
 DELETE http://localhost:4000/api/markets/999999
 
 
+// ----------------------------------------------------------
 
 ### MARKET PLAYER ENDPOINTS
+
+// -----------------------------------------------------------
+
 
 ###Get all market players
 GET http://localhost:4000/api/marketPlayers
@@ -201,3 +209,15 @@ Content-Type: application/json
 
 ### DELETE marketPlayer
 DELETE http://localhost:4000/api/marketPlayers/4
+
+
+
+
+// --------------------------------------------
+
+## AI ENDPOINTS
+
+// --------------------------------------------
+
+### Generate AI market summary
+GET http://localhost:4000/api/ai/market-summary/1

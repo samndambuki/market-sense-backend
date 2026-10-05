@@ -27,6 +27,9 @@ export const getMarketById = async (req, res) => {
 
     const market = await prisma.market.findUnique({
       where: { id },
+      include: {
+        players: true,
+      },
     });
 
     if (!market) {
