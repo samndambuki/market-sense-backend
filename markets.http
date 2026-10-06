@@ -224,3 +224,20 @@ GET http://localhost:4000/api/ai/market-summary/1
 
 ### AI competitor analysis
 GET http://localhost:4000/api/ai/competitorAnalysis/1
+
+
+
+// --------------------------------------------------
+
+### AUTHENTICATION ENDPOINTS 
+
+// ---------------------------------------------------
+
+POST http://localhost:4000/api/auth/register
+Content-Type: application/json
+
+{
+  "fullName":"Samuel Developer",
+  "email":"samuel@example.com",
+  "password":"Password123!"
+}
