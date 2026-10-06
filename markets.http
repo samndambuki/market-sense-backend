@@ -233,11 +233,23 @@ GET http://localhost:4000/api/ai/competitorAnalysis/1
 
 // ---------------------------------------------------
 
+
+### Register Endpoint
 POST http://localhost:4000/api/auth/register
 Content-Type: application/json
 
 {
   "fullName":"Samuel Developer",
+  "email":"samuel@example.com",
+  "password":"Password123!"
+}
+
+
+### Login Endpoint
+POST http://localhost:4000/api/auth/login
+Content-Type: application/json
+
+{
   "email":"samuel@example.com",
   "password":"Password123!"
 }
