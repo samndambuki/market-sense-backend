@@ -221,3 +221,6 @@ DELETE http://localhost:4000/api/marketPlayers/4
 
 ### Generate AI market summary
 GET http://localhost:4000/api/ai/market-summary/1
+
+### AI competitor analysis
+GET http://localhost:4000/api/ai/competitorAnalysis/1
