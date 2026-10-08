@@ -152,8 +152,9 @@ Content-Type: application/json
 
 
 ### DELETE existing market
-DELETE http://localhost:4000/api/markets/2
+DELETE http://localhost:4000/api/markets/8
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc5MTQ4OTgxOCwiZXhwIjoxNzkxNTc2MjE4fQ.fTtFWa6Ph62ytuR5hs4uv_t0qh86gNjqykwDdcN4XUU
 
 ### Test invalid ID
 DELETE http://localhost:4000/api/markets/abc
@@ -222,6 +223,7 @@ DELETE http://localhost:4000/api/marketPlayers/4
 
 ### Generate AI market summary
 GET http://localhost:4000/api/ai/market-summary/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc5MTQ4OTgxOCwiZXhwIjoxNzkxNTc2MjE4fQ.fTtFWa6Ph62ytuR5hs4uv_t0qh86gNjqykwDdcN4XUU
 
 ### AI competitor analysis
 GET http://localhost:4000/api/ai/competitorAnalysis/1
