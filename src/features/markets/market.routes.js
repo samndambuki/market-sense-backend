@@ -6,13 +6,14 @@ import {
   updateMarket,
   deleteMarket,
 } from "./market.controller.js";
+import { authenticate } from "../../middleware/auth.middleware.js";
 
 const router = Router();
 
 router.get("/", getMarkets);
 router.get("/:id", getMarketById);
-router.post("/", createMarket);
-router.put("/:id", updateMarket);
-router.delete("/:id", deleteMarket);
+router.post("/", authenticate, createMarket);
+router.put("/:id", authenticate, updateMarket);
+router.delete("/:id", authenticate, deleteMarket);
 
 export default router;
