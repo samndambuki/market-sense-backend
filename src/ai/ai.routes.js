@@ -5,6 +5,6 @@ import { authenticate } from "../middleware/auth.middleware";
 const router = Router();
 
 router.get("/market-summary/:id", authenticate, getMarketSummary);
-router.get("/competitorAnalysis/:id", authenticate, getCompetitorAnalysis);
+router.get("/competitor-analysis", authenticate, getCompetitorAnalysis);
 
 export default router;

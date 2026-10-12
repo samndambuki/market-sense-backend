@@ -43,16 +43,21 @@ export const getMarketSummary = async (req, res) => {
 
 export const getCompetitorAnalysis = async (req, res) => {
   try {
-    const id = Number(req.params.id);
+    const { marketName } = req.query;
 
-    if (!Number.isInteger(id) || id <= 0) {
+    if (!marketName || typeof marketName !== "string" || !marketName.trim()) {
       return res.status(400).json({
-        message: "Invalid market id",
+        message: "Market Name is required",
       });
     }
 
-    const market = await prisma.market.findUnique({
-      where: { id },
+    const market = await prisma.market.findFirst({
+      where: {
+        name: {
+          equals: marketName.trim(),
+          mode: "insensitive",
+        },
+      },
       include: {
         players: true,
       },

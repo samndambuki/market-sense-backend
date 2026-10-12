@@ -3,8 +3,11 @@ import { marketSchema } from "./market.validation.js";
 
 export const getMarkets = async (req, res) => {
   try {
-    const markets = await prisma.market.findMany();
-
+    const markets = await prisma.market.findMany({
+      include: {
+        players: true,
+      },
+    });
     res.json(markets);
   } catch (error) {
     console.error("Error fetching markets:", error);
