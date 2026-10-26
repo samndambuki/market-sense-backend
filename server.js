@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import prisma from "./src/config/prisma";
+import prisma from "./src/config/prisma.js";
 import marketRoutes from "./src/features/markets/market.routes.js";
 import marketPlayerRoutes from "./src/features/marketPlayers/marketPlayer.routes.js";
 import aiRoutes from "./src/ai/ai.routes.js";

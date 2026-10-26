@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { getCompetitorAnalysis, getMarketSummary } from "./ai.controller";
-import { authenticate } from "../middleware/auth.middleware";
+import { getCompetitorAnalysis, getMarketSummary } from "./ai.controller.js";
+import { authenticate } from "../middleware/auth.middleware.js";
 
 const router = Router();
 
