@@ -226,8 +226,8 @@ GET http://localhost:4000/api/ai/market-summary/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc5MTQ4OTgxOCwiZXhwIjoxNzkxNTc2MjE4fQ.fTtFWa6Ph62ytuR5hs4uv_t0qh86gNjqykwDdcN4XUU
 
 ### AI competitor analysis
-GET http://localhost:4000/api/ai/competitor-analysis/1
-
+GET http://localhost:4000/api/ai/competitor-analysis?marketName=Digital Payments
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc5MTgzMTgxMiwiZXhwIjoxNzkxOTE4MjEyfQ.fRX1GWJs6PuJwp5P1pkQ4fWOeVbLpseTqh8CUj0yVzU
 
 
 // --------------------------------------------------
