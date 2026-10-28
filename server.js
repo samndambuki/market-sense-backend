@@ -38,6 +38,16 @@ app.get("/api/health/db", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Market Sense API is running on http://localhost:${PORT}`);
+// app.listen(PORT, () => {
+//   console.log(`Market Sense API is running on http://localhost:${PORT}`);
+// });
+
+const endpoint = process.env.AWS_LAMBDA_HTTP_ENDPOINT;
+
+const [host, port] = endpoint
+  ? endpoint.split(":")
+  : ["127.0.0.1", String(PORT)];
+
+app.listen(Number(port), host, () => {
+  console.log(`Market Sense API is running on ${host}:${port}`);
 });
