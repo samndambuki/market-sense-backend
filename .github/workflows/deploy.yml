@@ -3,7 +3,7 @@ name: Deploy backend to AWS Lambda
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   workflow_dispatch: # lets you also run it manually from the Actions tab
 
 concurrency:
