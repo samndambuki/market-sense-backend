@@ -11,10 +11,17 @@ import { authorize } from "../../middleware/role.middleware.js";
 
 const router = Router();
 
+router.use(authenticate);
+
+//VIEWER, ANALYST, ADMIN
 router.get("/", getMarkets);
 router.get("/:id", getMarketById);
-router.post("/", authenticate, createMarket);
-router.put("/:id", authenticate, updateMarket);
-router.delete("/:id", authenticate, authorize("ADMIN"), deleteMarket);
+
+//ANALYST,ADMIN
+router.post("/", authorize("ADMIN", "ANALYST"), createMarket);
+router.put("/:id", authorize("ADMIN", "ANALYST"), updateMarket);
+
+//ADMIN
+router.delete("/:id", authorize("ADMIN"), deleteMarket);
 
 export default router;

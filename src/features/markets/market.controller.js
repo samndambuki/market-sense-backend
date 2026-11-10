@@ -135,9 +135,13 @@ export const deleteMarket = async (req, res) => {
       });
     }
 
-    await prisma.market.delete({
-      where: { id },
-    });
+    // await prisma.market.delete({
+    //   where: { id },
+    // });
+    await prisma.$transaction([
+      prisma.markerPlayer.deleteMany({ where: { marketId: id } }),
+      prisma.market.delete({ where: { id } }),
+    ]);
 
     res.status(204).send();
   } catch (error) {

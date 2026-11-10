@@ -1,0 +1,56 @@
+# Save as: .github/workflows/deploy.yml  (in the backend repo)
+name: Deploy backend to AWS Lambda
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # lets you also run it manually from the Actions tab
+
+concurrency:
+  group: deploy-backend
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Prisma client (generated -> dist/generated)
+        run: npm run build:prisma
+        env:
+          # Dummy value so prisma.config.ts can load. "generate" never connects to it.
+          DATABASE_URL: postgresql://user:pass@localhost:5432/db
+
+      - name: Remove dev dependencies
+        run: npm prune --omit=dev
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+
+      - name: Update AWS CLI (needed for "lambda-web" commands)
+        working-directory: ${{ runner.temp }}
+        run: |
+          curl -sS "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip
+          unzip -q awscliv2.zip
+          sudo ./aws/install --update
+          aws --version
+
+      - name: Deploy new revision
+        # Packages this folder, uploads it, creates a revision and waits until it's live.
+        # Keeps the function's existing environment variables and execution role.
+        run: aws lambda-web deploy --name market-sense-api --code .
