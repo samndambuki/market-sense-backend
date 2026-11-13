@@ -6,6 +6,8 @@ import marketRoutes from "./src/features/markets/market.routes.js";
 import marketPlayerRoutes from "./src/features/marketPlayers/marketPlayer.routes.js";
 import aiRoutes from "./src/ai/ai.routes.js";
 import authRoutes from "./src/features/auth/auth.routes.js";
+import swaggerUi from "swagger-ui-express";
+import openapi from "./src/docs/openapi.js";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -16,6 +18,17 @@ app.use("/api/markets", marketRoutes);
 app.use("/api/marketPlayers", marketPlayerRoutes);
 app.use("/api/ai", aiRoutes);
 app.use("/api/auth", authRoutes);
+
+// API docs: Swagger UI at /api/docs, raw spec at /api/docs.json
+app.get("/api/docs.json", (req, res) => res.json(openapi));
+app.use(
+  "/api/docs",
+  swaggerUi.serve,
+  swaggerUi.setup(openapi, {
+    customSiteTitle: "MarketSense API docs",
+    swaggerOptions: { persistAuthorization: true },
+  }),
+);
 
 app.get("/", (req, res) => {
   res.json({

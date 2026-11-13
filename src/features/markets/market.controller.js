@@ -139,7 +139,7 @@ export const deleteMarket = async (req, res) => {
     //   where: { id },
     // });
     await prisma.$transaction([
-      prisma.markerPlayer.deleteMany({ where: { marketId: id } }),
+      prisma.marketPlayer.deleteMany({ where: { marketId: id } }),
       prisma.market.delete({ where: { id } }),
     ]);
 
